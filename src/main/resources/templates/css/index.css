@@ -1,0 +1,66 @@
+body {
+    background: #302859;
+    color: #fff;
+    font-size: 30px;
+}
+header {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px;
+    box-sizing: border-box;
+    background: #fff;
+    color: #000;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+}
+.loginOut {
+    color: #e40d0d;
+    margin-left: 20px;
+}
+.loginOut:hover {
+    cursor: pointer;
+}
+.contBox {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.col {
+    width: 33%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+.global {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    /* line-height: 200px; */
+    text-align: center;
+    border-radius: 50%;
+    background: #ed7f30;
+}
+.global:hover {
+    cursor: pointer;
+}
+.bigGlobal {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: #ff00ff;
+    font-size: 36px;
+}
+.marginB {
+    margin-bottom: 60px;
+}
