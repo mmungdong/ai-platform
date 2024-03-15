@@ -5,7 +5,7 @@ let $loginOut = $('#loginOut');
 
 $video.on('click',function(e) {
     e.stopPropagation();
-    window.open('https://aic.oceanengine.com/login')
+    window.open('https://aic.oceanengine.com/tools/smart_clip/edit?bpId=1793434281831452&mode=0&industry=0')
 })
 
 $word.on('click',function(e) {
