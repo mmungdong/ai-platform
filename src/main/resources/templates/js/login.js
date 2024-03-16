@@ -102,16 +102,16 @@ $loginBtn.on('click',function(e) {
         contentType: "application/json",
         data: jsonString,
         success: function(res) {
-
-            if (res.success) {
-                window.location.href = 'index.html';
-                document.cookie = "cookieName=cookieValue; expires=" + new Date(new Date().getTime() + 1 * 60 * 60 * 1000).toUTCString();
-            } else {
-                alert(res.msg)
+            console.log("success")
+            if (res.code === "200") {
+                localStorage.setItem('APP-AI-PLATFORM-TOKEN', res.data);
+                const expires = "expires="+ new Date(new Date().getTime() + 1 * 60 * 60 * 1000).toUTCString();
+                document.cookie = `APP-AI-PLATFORM-TOKEN=${res.data}; ${expires}; path=/`;
+                window.location.href = '/index.html';
             }
         },
         error: function(res) {
-            alert(res.msg)
+            console.log("error ----:", res)
         },
 
     });

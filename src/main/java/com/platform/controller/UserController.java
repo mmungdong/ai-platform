@@ -6,11 +6,11 @@ import com.platform.domain.User;
 import com.platform.service.InvitationCodeSerivice;
 import com.platform.service.impl.InvitationCodeServiceImpl;
 import com.platform.service.impl.UserServiceImpl;
+import com.platform.utils.ResponseObj;
+import org.apache.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -40,8 +40,13 @@ public class UserController {
      * @return Result
      */
     @PostMapping(value = "/login")
-    public Result login(@RequestBody User user){
+    public ResponseObj login(@RequestBody User user){
         return userService.login(user);
+    }
+
+    @GetMapping(value = "/logout")
+    public ResponseObj logout(@RequestBody User user){
+        return userService.logout(user);
     }
 }
 

@@ -18,9 +18,10 @@ public interface UserMapper {
      * @param username
      * @return
      */
-    @Select(value = "select u.username,u.password from sys_user u where u.username=#{username}")
+    @Select(value = "select id, u.username,u.password from sys_user u where u.username=#{username}")
     @Results
-            ({@Result(property = "username",column = "username"),
+            ({@Result(property = "id",column = "id"),
+              @Result(property = "username",column = "username"),
               @Result(property = "password",column = "password")})
     User findUserByName(@Param("username") String username);
 
