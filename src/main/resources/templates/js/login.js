@@ -6,6 +6,7 @@ let $codeBox = $('#codeBox')
 let $loginBtn = $('#loginBtn')
 let $registBtn = $('#registBtn')
 
+const AI_PLATFORM_TOKEN_NAME = "APP-AI-PLATFORM-TOKEN"
 
 // 点击去往注册按钮
 $toRegistBtn.on('click',function(e) {
@@ -92,21 +93,18 @@ $loginBtn.on('click',function(e) {
         "password": passwordText
     };
 
-    // 将JSON数据对象转换为字符串
-    var jsonString = JSON.stringify(jsonData);
-
     $.ajax({
         type: 'POST',
         url: '/user/login',
         dataType: "json",
         contentType: "application/json",
-        data: jsonString,
+        data: JSON.stringify(jsonData),
         success: function(res) {
             console.log("success")
             if (res.code === "200") {
-                localStorage.setItem('APP-AI-PLATFORM-TOKEN', res.data);
+                localStorage.setItem(AI_PLATFORM_TOKEN_NAME, res.data);
                 const expires = "expires="+ new Date(new Date().getTime() + 1 * 60 * 60 * 1000).toUTCString();
-                document.cookie = `APP-AI-PLATFORM-TOKEN=${res.data}; ${expires}; path=/`;
+                document.cookie = `${AI_PLATFORM_TOKEN_NAME}=${res.data}; ${expires}; path=/`;
                 window.location.href = '/index.html';
             }
         },

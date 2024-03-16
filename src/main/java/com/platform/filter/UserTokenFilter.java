@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.platform.domain.auth.LoginUserCompare;
 import com.platform.exception.exceptionImpl.UseInputException;
 import com.platform.service.impl.UserServiceImpl;
-import com.platform.utils.CustomerJwtUtil;
+import com.platform.utils.auth.CustomerJwtUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

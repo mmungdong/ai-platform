@@ -1,4 +1,4 @@
-package com.platform.service.authentication;
+package com.platform.service.auth;
 
 import com.platform.domain.User;
 import com.platform.domain.auth.LoginUserCompare;

@@ -1,7 +1,7 @@
 package com.platform.exception;
 
 import com.platform.exception.exceptionImpl.UseInputException;
-import com.platform.utils.ResponseObj;
+import com.platform.utils.resp.ResponseObj;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

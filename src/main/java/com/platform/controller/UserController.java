@@ -3,13 +3,10 @@ package com.platform.controller;
 import com.platform.domain.InvitationCode;
 import com.platform.domain.Result;
 import com.platform.domain.User;
-import com.platform.service.InvitationCodeSerivice;
 import com.platform.service.impl.InvitationCodeServiceImpl;
 import com.platform.service.impl.UserServiceImpl;
-import com.platform.utils.ResponseObj;
-import org.apache.http.HttpHeaders;
+import com.platform.utils.resp.ResponseObj;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

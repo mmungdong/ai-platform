@@ -52,10 +52,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                // api
                 .antMatchers("/user/login").permitAll()
                 .antMatchers("/user/regist").permitAll()
-                .antMatchers("/login.html").permitAll()
                 .antMatchers("/logout").permitAll()
+                // startic page
+                .antMatchers("/login.html").permitAll()
+                .antMatchers("/error/*.html").permitAll()
+                // auth
                 .antMatchers("/index.html").hasAuthority("USER")
                 .anyRequest().authenticated();
 

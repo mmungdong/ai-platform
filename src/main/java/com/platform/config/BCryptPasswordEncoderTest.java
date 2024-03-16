@@ -10,15 +10,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class BCryptPasswordEncoderTest {
 
     public static void main(String[] args) {
-        String plainPassword = "password123";
+        String plainPassword = "1234556";
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         // 生成随机的盐值
-        String salt = BCrypt.gensalt();
+        String salt = "";
 
         // 使用盐值加密密码
-        String hashedPassword = passwordEncoder.encode(plainPassword + salt);
+        String hashedPassword = passwordEncoder.encode(plainPassword);
 
         System.out.println("明文密码: " + plainPassword);
         System.out.println("盐值: " + salt);

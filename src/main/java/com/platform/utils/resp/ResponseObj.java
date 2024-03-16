@@ -1,4 +1,4 @@
-package com.platform.utils;
+package com.platform.utils.resp;
 
 import com.platform.constant.CodeConstant;
 import lombok.Data;

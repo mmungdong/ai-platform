@@ -1,4 +1,4 @@
-package com.platform.utils;
+package com.platform.utils.auth;
 
 import com.platform.exception.exceptionImpl.UseInputException;
 import io.jsonwebtoken.Claims;
