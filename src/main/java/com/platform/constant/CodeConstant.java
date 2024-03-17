@@ -6,11 +6,13 @@ package com.platform.constant;
  */
 public enum CodeConstant {
 
-    ERROR_CODE("500"),//系统逻辑错误
+    BAD_CREDENTIALS_ERROR("401"),
 
-    INFO_ERROR("1000"),
+    INFO_ERROR("400"),
 
-    SUCCESS_CODE("200");//成功
+    SUCCESS_CODE("200"),
+
+    INTERNAL_SERVER_ERROR("500");
 
     private final String code;
 

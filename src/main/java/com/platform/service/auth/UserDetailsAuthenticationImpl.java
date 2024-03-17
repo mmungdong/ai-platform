@@ -30,13 +30,12 @@ public class UserDetailsAuthenticationImpl implements UserDetailsService {
         User user = userMapper.findUserByName(username);
         if (Objects.isNull(user))
         {
-            throw new RuntimeException("用户不存在!");
+            throw new RuntimeException("用户名不存在!");
         }
         ArrayList<String> permissions = new ArrayList<>(Arrays.asList("USER"));
         if(user.getUsername() == "admin") {
             permissions.add("ADMIN");
         }
-
 
         return new LoginUserCompare(user, permissions);
     }

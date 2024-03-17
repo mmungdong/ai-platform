@@ -28,7 +28,7 @@ public class ResponseObj<T> {
     }
 
     public static ResponseObj success() {
-        return new ResponseObj(CodeConstant.SUCCESS_CODE.getCode(), "Success", null);
+        return new ResponseObj(CodeConstant.SUCCESS_CODE.getCode(), "success", null);
     }
 
     public static ResponseObj success(String message, Object data) {
@@ -36,7 +36,15 @@ public class ResponseObj<T> {
     }
 
     public static ResponseObj success(Object data) {
-        return new ResponseObj(CodeConstant.SUCCESS_CODE.getCode(), "Success", data);
+        return new ResponseObj(CodeConstant.SUCCESS_CODE.getCode(), "success", data);
+    }
+
+    public static ResponseObj badCredentialsError(String message) {
+        return new ResponseObj(CodeConstant.BAD_CREDENTIALS_ERROR.getCode(), message);
+    }
+
+    public static ResponseObj internalServerError(String message) {
+        return new ResponseObj(CodeConstant.INTERNAL_SERVER_ERROR.getCode(), message);
     }
 
     public static ResponseObj fail(String message) {
@@ -45,14 +53,6 @@ public class ResponseObj<T> {
 
     public static ResponseObj fail(Object data) {
         return new ResponseObj(CodeConstant.INFO_ERROR.getCode(), "Fail", data);
-    }
-
-    public static ResponseObj error(String message) {
-        return new ResponseObj(CodeConstant.ERROR_CODE.getCode(), message);
-    }
-
-    public static ResponseObj error(Object data) {
-        return new ResponseObj(CodeConstant.ERROR_CODE.getCode(), "error", data);
     }
 
 }

@@ -106,6 +106,8 @@ $loginBtn.on('click',function(e) {
                 const expires = "expires="+ new Date(new Date().getTime() + 1 * 60 * 60 * 1000).toUTCString();
                 document.cookie = `${AI_PLATFORM_TOKEN_NAME}=${res.data}; ${expires}; path=/`;
                 window.location.href = '/index.html';
+            } else if (res.code === "401") {
+                alert(res.message)
             }
         },
         error: function(res) {
