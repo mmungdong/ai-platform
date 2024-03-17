@@ -5,6 +5,8 @@ import com.platform.domain.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * mapper的具体表达式
  */
@@ -12,7 +14,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InvitationCodeMapper {
 
-    @Select(value = "select c.code,c.status from sys_invitation_code c where c.code=#{code} and c.status='NORMAL' ")
+    // @Select(value = "select c.code,c.status from sys_invitation_code c where c.code=#{code} and c.status='NORMAL' ")
+    @Select(value = "select c.code,c.status from sys_invitation_code c where c.code=#{code}")
     @Results
             ({@Result(property = "code",column = "code"),
               @Result(property = "status",column = "status")})
@@ -29,5 +32,6 @@ public interface InvitationCodeMapper {
     @Select(value = "select c.id,c.code,c.status from sys_invitation_code c order by id desc limit 1")
     InvitationCode findLastCode();
 
-
+    @Select(value = "select c.id,c.code,c.status from sys_invitation_code c order by id desc")
+    List<InvitationCode> listCode();
 }

@@ -31,6 +31,10 @@ public class ResponseObj<T> {
         return new ResponseObj(CodeConstant.SUCCESS_CODE.getCode(), "Success", null);
     }
 
+    public static ResponseObj success(String message, Object data) {
+        return new ResponseObj(CodeConstant.SUCCESS_CODE.getCode(), message, data);
+    }
+
     public static ResponseObj success(Object data) {
         return new ResponseObj(CodeConstant.SUCCESS_CODE.getCode(), "Success", data);
     }

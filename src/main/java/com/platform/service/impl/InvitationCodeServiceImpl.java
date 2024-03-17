@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(rollbackFor = RuntimeException.class)
 public class InvitationCodeServiceImpl implements InvitationCodeSerivice {
@@ -56,4 +58,10 @@ public class InvitationCodeServiceImpl implements InvitationCodeSerivice {
     public InvitationCode findCode(String code) {
         return invitationCodeMapper.findCode(code);
     }
+
+    @Override
+    public List<InvitationCode> listCode() {
+        return invitationCodeMapper.listCode();
+    }
+
 }

@@ -14,4 +14,6 @@ public interface InvitationCodeSerivice {
 
     InvitationCode findCode(String code);
 
+    List<InvitationCode> listCode();
+
 }
