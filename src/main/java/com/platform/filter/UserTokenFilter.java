@@ -1,7 +1,7 @@
 package com.platform.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.platform.domain.auth.LoginUserCompare;
+import com.platform.domain.dto.LoginUserDetails;
 import com.platform.exception.exceptionImpl.UseInputException;
 import com.platform.service.impl.UserServiceImpl;
 import com.platform.utils.auth.CustomerJwtUtil;
@@ -37,7 +37,7 @@ public class UserTokenFilter extends OncePerRequestFilter {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("APP-AI-PLATFORM-TOKEN")) {
+                if (cookie.getName().equals("ai-platform-username")) {
                     token = cookie.getValue();
                     break;
                 }
@@ -49,10 +49,10 @@ public class UserTokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        Integer userID;
+        String username;
         try{
-            userID = CustomerJwtUtil.parseUserLoginToken(token);
-            if (userID==null)
+            username = CustomerJwtUtil.parseUserLoginToken(token);
+            if (username==null)
             {
                 throw new UseInputException("the token status is illegally!");
             }
@@ -64,13 +64,13 @@ public class UserTokenFilter extends OncePerRequestFilter {
 
         //redis用户过期判断
         ValueOperations valueOperations = redisTemplate.opsForValue();
-        Object o = valueOperations.get("uid:" + userID);
-        LoginUserCompare user;
+        Object o = valueOperations.get("ai-platform-username:" + username);
+        LoginUserDetails user;
         if (o!=null)
         {
-            user= JSON.parseObject(JSON.toJSONString(o),LoginUserCompare.class);
+            user= JSON.parseObject(JSON.toJSONString(o), LoginUserDetails.class);
             //刷新过期时间
-            redisTemplate.expire("uid:" + userID,System.currentTimeMillis()+ UserServiceImpl.exprTime, TimeUnit.MILLISECONDS);
+            redisTemplate.expire("ai-platform-username:" + username,System.currentTimeMillis()+ UserServiceImpl.exprTime, TimeUnit.MILLISECONDS);
         }else
         {
             filterChain.doFilter(request,response);

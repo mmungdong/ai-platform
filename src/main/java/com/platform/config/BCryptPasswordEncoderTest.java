@@ -1,6 +1,5 @@
 package com.platform.config;
 
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
@@ -10,7 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class BCryptPasswordEncoderTest {
 
     public static void main(String[] args) {
-        String plainPassword = "000";
+        // 123456 $2a$10$2rCNlY/4xp3qH7DyM4U0weOv9bNXnnMeB7LkrQ9.b/BYQ3WtDhNtO
+
+        String plainPassword = "123456";
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 

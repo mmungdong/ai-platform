@@ -3,9 +3,13 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    # mysql 8.0
     url: jdbc:mysql://localhost:3306/ai_platform?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=Asia/Shanghai&useSSL=false
+    # mysql 5.7
+    # url: jdbc:mysql://localhost:3306/ai_platform?useUnicode=true&characterEncoding=utf-8&useSSL=true&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true
     username: root
     password: 123456
+
   resources:
     static-locations: classpath:/templates  #访问静态页面
 
@@ -19,11 +23,6 @@ spring:
         max-idle: 8
         min-idle: 1
 
-## spring security配置
-  security:
-    user:
-      name: admin
-      password: 123456
-
-JWT:
-  signature: $ZJHJWT$
+jwt:
+  signature:
+    username: $ZJHJWT$

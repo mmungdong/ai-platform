@@ -1,4 +1,4 @@
-package com.platform.domain;
+package com.platform.utils;
 
 import java.util.Arrays;
 

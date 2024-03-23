@@ -1,29 +1,20 @@
 package com.platform.config;
 
-import com.platform.domain.User;
-import com.platform.domain.auth.LoginUserCompare;
+
 import com.platform.filter.UserTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author MungDong
@@ -36,6 +27,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
 
     @Resource
     private UserTokenFilter userTokenFilter;
@@ -58,15 +52,23 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/login").permitAll()
                 .antMatchers("/user/regist").permitAll()
                 .antMatchers("/logout").permitAll()
+
                 // startic page
+                .antMatchers("/").permitAll()
+                .antMatchers("/company/index.html").permitAll()
+                .antMatchers("/static/**").permitAll()
                 .antMatchers("/login.html").permitAll()
                 .antMatchers("/error/*.html").permitAll()
                 // auth
-                .antMatchers("/index.html").hasAuthority("USER")
+                .antMatchers("/index.html").hasAnyAuthority("ADMIN", "USER", "SUPER_ADMIN")
                 .anyRequest().authenticated();
 
         http.
                 addFilterBefore(userTokenFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.
+                exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler);
     }
 
 }

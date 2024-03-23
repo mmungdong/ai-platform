@@ -1,10 +1,14 @@
 package com.platform.service;
 
 import com.platform.domain.Result;
-import com.platform.domain.User;
+import com.platform.domain.vo.LoginUserVO;
+import com.platform.domain.vo.RegistUserVO;
 import com.platform.utils.resp.ResponseObj;
 
 public interface UserService {
-    Result regist(User user);
-    ResponseObj login(User user);
+
+    Result regist(RegistUserVO user);
+    ResponseObj login(LoginUserVO user);
+
+
 }

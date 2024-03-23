@@ -6,7 +6,7 @@ let $codeBox = $('#codeBox')
 let $loginBtn = $('#loginBtn')
 let $registBtn = $('#registBtn')
 
-const AI_PLATFORM_TOKEN_NAME = "APP-AI-PLATFORM-TOKEN"
+const AI_PLATFORM_USERNAME_TOKEN = "ai-platform-username"
 
 // 点击去往注册按钮
 $toRegistBtn.on('click',function(e) {
@@ -16,9 +16,6 @@ $toRegistBtn.on('click',function(e) {
     $registBtn.show()
 
     return
-
-
-
 
 })
 // 点击注册按钮
@@ -102,9 +99,9 @@ $loginBtn.on('click',function(e) {
         success: function(res) {
             console.log("success")
             if (res.code === "200") {
-                localStorage.setItem(AI_PLATFORM_TOKEN_NAME, res.data);
+                localStorage.setItem(AI_PLATFORM_USERNAME_TOKEN, res.data);
                 const expires = "expires="+ new Date(new Date().getTime() + 1 * 60 * 60 * 1000).toUTCString();
-                document.cookie = `${AI_PLATFORM_TOKEN_NAME}=${res.data}; ${expires}; path=/`;
+                document.cookie = `${AI_PLATFORM_USERNAME_TOKEN}=${res.data}; ${expires}; path=/`;
                 window.location.href = '/index.html';
             } else if (res.code === "401") {
                 alert(res.message)

@@ -1,19 +1,19 @@
 package com.platform.service;
 
-import com.platform.domain.InvitationCode;
 import com.platform.domain.Result;
+import com.platform.domain.vo.InvitationCodeVO;
 
 import java.util.List;
 
 public interface InvitationCodeSerivice {
     Result insertInvitationCode();
 
-    int updateInvitationCodeStatus(InvitationCode invitationCode);
+    int discardInvitationCode(InvitationCodeVO invitationCodeVO);
 
-    InvitationCode findLastCode();
+    InvitationCodeVO findLastCode();
 
-    InvitationCode findCode(String code);
+    InvitationCodeVO findCode(String code);
 
-    List<InvitationCode> listCode();
+    List<InvitationCodeVO> listCode();
 
 }

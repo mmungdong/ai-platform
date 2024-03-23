@@ -20,7 +20,7 @@ import java.util.HashMap;
 public class CustomerJwtUtil {
     private static String SIGNATURE;
 
-    @Value("${JWT.signature}")
+    @Value("${jwt.signature.username}")
     private String signature;//签名
 
     @PostConstruct
@@ -38,12 +38,12 @@ public class CustomerJwtUtil {
         jwtHeader.put("algorithm", "HS256");
     }
 
-    public static String buildUserLoginTokenByUserID(Integer userID){
+    public static String buildUserLoginTokenByUserName(String username){
         String token=null;
-        if (userID!=null&&userID!=0)
+        if (!StringUtils.isEmpty(username))
         {
             HashMap<String, Object> userInfo = new HashMap<>();
-            userInfo.put("uid",userID);
+            userInfo.put("ai-platform-username",username);
             token = Jwts.builder()
                     .setHeader(jwtHeader)
                     .setClaims(userInfo)
@@ -54,21 +54,19 @@ public class CustomerJwtUtil {
         return token;
     }
 
-    public static Integer parseUserLoginToken(String token)
+    public static String parseUserLoginToken(String token)
     {
         if (!StringUtils.hasText(token))
         {
             throw new UseInputException("受解析的token非法!");
         }
         Claims body = Jwts.parser().setSigningKey(SIGNATURE).parseClaimsJws(token).getBody();
-        Integer loginUserID = (Integer)body.get("uid");
-        if (loginUserID==0)
+        String username = (String)body.get("ai-platform-username");
+        if (StringUtils.isEmpty(username))
         {
-            loginUserID=null;
+            username="";
         }
-        return loginUserID;
+        return username;
     }
-
-
 
 }

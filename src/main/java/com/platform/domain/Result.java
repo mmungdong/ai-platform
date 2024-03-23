@@ -7,20 +7,19 @@ import javax.servlet.http.Cookie;
  * @param <T> 可变类型
  */
 public class Result<T> {
-    /**
-     * 返回信息
-     */
-    private String msg;
 
     /**
      * 数据是否正常请求
      */
     private boolean success;
-
+    /**
+     * 返回信息
+     */
+    private String msg;
     /**
      * 具体返回的数据
      */
-    private T detail;
+    private T data;
 
     private Cookie cookie;
 
@@ -40,12 +39,12 @@ public class Result<T> {
         this.success = success;
     }
 
-    public T getDetail() {
-        return detail;
+    public T getData() {
+        return data;
     }
 
-    public void setDetail(T detail) {
-        this.detail = detail;
+    public void setData(T data) {
+        this.data = data;
     }
 
     public void setCookie(String name, String value, int maxAge) {
